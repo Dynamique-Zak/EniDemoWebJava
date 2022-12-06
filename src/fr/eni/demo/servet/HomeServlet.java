@@ -30,8 +30,41 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//
+		int[] notes = new int[2];
+		
+		notes[0] = 1;
+		notes[1] = 2;
+		
+		// bad
+		// notes[0] = "es";
+		
+		//
+		/*
+		Object[] objects = new Object[2];
+		
+		objects[0] = new Person("Arnaud");
+		objects[1] = new Article("Bière");
+		
+		for (int i = 0; i < objects.length; i++) {
+			
+			if (objects[i] instanceof Person) {
+				Person person = (Person) objects[i];
+				System.out.println(person.firstname);
+			}
+		}
+		*/
+		
+		// Envoyer des variables String dans la vue JSP 
+		// Warning : SetAttribute attend en valeur un Object 
+		// Donc faut caster aprés pour exploiter la donner
+		String client = "Isaac";
+		
+		request.setAttribute("firstname", client);
+		request.setAttribute("lastname", "Test");
+		
 		// Afficher page HTML
-		RequestDispatcher rd = request.getRequestDispatcher("home.html");
+		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		rd.forward(request, response);
 	}
 
