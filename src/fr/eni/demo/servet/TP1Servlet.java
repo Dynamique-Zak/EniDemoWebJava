@@ -11,18 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class TP1Servlet
  */
-@WebServlet("/home")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/tp1")
+public class TP1Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+	private int randomNumber;
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public TP1Servlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
+        this.randomNumber = -1;
     }
 
 	/**
@@ -30,8 +33,8 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Afficher page HTML
-		RequestDispatcher rd = request.getRequestDispatcher("home.html");
+		// Afficher page HTML (formulaire)
+		RequestDispatcher rd = request.getRequestDispatcher("tp1.html");
 		rd.forward(request, response);
 	}
 
@@ -39,17 +42,32 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Récupérer le prenom du formulaire
-		String firstname = request.getParameter("firstname");
+		// Etape 1
+		// Si le nombre est égal à -1 alors il n'as pas été généré
+		if (randomNumber == -1) {
+			// Je genere un nombre aléatoire
+			Random random = new Random(); // outil/utilitaire/helper
+			this.randomNumber = random.nextInt(11); // nombre de 0 a 10
+			
+			System.out.println(String.format("Le nombre généré est %d", randomNumber));
+		}
 		
-		// Si prenom valid
-		if (!firstname.isEmpty()) {
-			// Ok
+		// Etape 2
+		// tester si le nombre de l'utilisateur est égal au nombre random
+		int userNumber = Integer.parseInt(request.getParameter("number")); // Pour l'instant en dur
+		
+		// Si les deux nombres concordent
+		if (userNumber == randomNumber) {
+			// Reset 
+			this.randomNumber = -1;
+			
+			// Afficher page HTML (formulaire)
 			RequestDispatcher rd = request.getRequestDispatcher("success.html");
 			rd.forward(request, response);
 		}
 		else {
-			// Erreur
+			// pas ok
+			// Afficher page HTML (formulaire)
 			RequestDispatcher rd = request.getRequestDispatcher("error.html");
 			rd.forward(request, response);
 		}
