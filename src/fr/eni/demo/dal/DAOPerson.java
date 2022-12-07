@@ -15,6 +15,44 @@ import fr.eni.demo.helper.PersonMapper;
 
 public class DAOPerson extends DAOBase {
 
+	/**
+	 * 
+	 * @param person
+	 * @return True quand insert OK. False quand erreur
+	 */
+	public boolean insert(Person person) {
+		// Prepare les var
+		Connection cnx = null;
+		
+		try{
+			// Ouvrir la connexion
+			cnx = JdbcTools.getConnection();
+			
+			// La requête
+			PreparedStatement stmt = cnx.prepareStatement("insert into person (firstname, lastname) values (?, ?)");
+	        
+			// je set les parametres
+			stmt.setString(1, person.getFirstname());
+			stmt.setString(2, person.getLastname());
+			
+			// J'execute la requete
+			stmt.execute();
+
+	        // Fermer la connexion
+	        cnx.close();
+	        
+	        // Retourne vrai 
+	    	return true;
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+
 	public Person selectById(int id) {
 		// Prepare les var
 		Person person = null;

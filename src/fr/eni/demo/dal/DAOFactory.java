@@ -6,7 +6,6 @@ import java.util.List;
 public class DAOFactory {
 
 	// private static DAOPerson daoPerson;
-	private static DAOPerson daoPerson;
 	private static List<DAOBase> DAOInstances = new ArrayList<DAOBase>();
 	
 	/*
@@ -50,7 +49,8 @@ public class DAOFactory {
 				// On instance la dao
 				// J'appel le constructeur par défaut de la classe mis en parametre
 				object = (T) type.newInstance();
-				// ajouter à la liste des dao instanciés
+				
+				// Ajouter à la liste des dao instanciés
 				DAOInstances.add(object);
 			}
 			

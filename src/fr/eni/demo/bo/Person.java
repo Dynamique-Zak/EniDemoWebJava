@@ -6,6 +6,13 @@ public class Person {
 	private String firstname;
 	private String lastname;
 	
+	public Person(String firstname, String lastname) {
+		super();
+		this.id = 0;
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
+	
 	public Person(int id, String firstname, String lastname) {
 		super();
 		this.id = id;

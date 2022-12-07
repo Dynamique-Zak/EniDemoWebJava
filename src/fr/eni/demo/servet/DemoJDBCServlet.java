@@ -36,9 +36,6 @@ public class DemoJDBCServlet extends HttpServlet {
 		// Recupere DAO Personne (par sa classe)
 		DAOPerson daoPerson = DAOFactory.getDAOByClass(DAOPerson.class);
 
-		// Recupere DAO Article (par sa classe)
-		DAOArticle daoArticle = DAOFactory.getDAOByClass(DAOArticle.class);
-		
 		Person person = daoPerson.selectById(1);
 		
 		System.out.println(person);

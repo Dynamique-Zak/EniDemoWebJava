@@ -35,7 +35,7 @@ public class ExampleButtonValueServlet extends HttpServlet {
 		Person person = new Person("Isaac", "Chocolatine");
 		request.setAttribute("person", person);
 		
-		// Afficher page HTML
+		// Afficher page JSP
 		RequestDispatcher rd = request.getRequestDispatcher("example-button.jsp");
 		rd.forward(request, response);
 	}

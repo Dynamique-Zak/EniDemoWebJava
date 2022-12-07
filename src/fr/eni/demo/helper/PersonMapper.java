@@ -7,6 +7,11 @@ import fr.eni.demo.bo.Person;
 
 public class PersonMapper {
 
+	/**
+	 * Mapper/Convertir des données SQL en objet Person
+	 * @param result La donnée SQL
+	 * @return La personne convertie depuis la donnée SQL
+	 */
 	public static Person sqlToPerson(ResultSet result) {
 		Person person = null;
 		try {
