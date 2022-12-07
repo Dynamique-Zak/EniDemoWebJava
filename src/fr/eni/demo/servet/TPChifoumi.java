@@ -43,6 +43,15 @@ public class TPChifoumi extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("tp3/chifumi.jsp");
 		rd.forward(request, response);
 		
+		Object[] objects = new Object[2];
+		
+		objects[0] = new Person("Isaac");
+		objects[1] = "Arnaud";
+
+		for (int i = 0; i < objects.length; i++) {
+			System.out.println(objects[i]);
+		}
+		
 		// String fakeSelection = "chi";
 		// dicto.get(fakeSelection); // un get de "chi" qui va retourner "fu"
 	}
@@ -101,6 +110,10 @@ public class TPChifoumi extends HttpServlet {
 		request.setAttribute("selection", selection);
 		request.setAttribute("aISelection", aISelection);
 		request.setAttribute("result", result);
+		
+		// Example objet complet
+		Person person = new Person("Isaac");
+		request.setAttribute("person", person);
 		
 		// Afficher page HTML
 		RequestDispatcher rd = request.getRequestDispatcher("tp3/result.jsp");
