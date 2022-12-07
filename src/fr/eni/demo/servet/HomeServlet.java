@@ -64,7 +64,7 @@ public class HomeServlet extends HttpServlet {
 		request.setAttribute("lastname", "Test");
 		
 		// Afficher page HTML
-		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("demo/home.jsp");
 		rd.forward(request, response);
 	}
 
@@ -78,12 +78,12 @@ public class HomeServlet extends HttpServlet {
 		// Si prenom valid
 		if (!firstname.isEmpty()) {
 			// Ok
-			RequestDispatcher rd = request.getRequestDispatcher("success.html");
+			RequestDispatcher rd = request.getRequestDispatcher("demo/success.html");
 			rd.forward(request, response);
 		}
 		else {
 			// Erreur
-			RequestDispatcher rd = request.getRequestDispatcher("error.html");
+			RequestDispatcher rd = request.getRequestDispatcher("demo/error.html");
 			rd.forward(request, response);
 		}
 	}

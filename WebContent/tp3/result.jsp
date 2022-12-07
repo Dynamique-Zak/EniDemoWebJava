@@ -12,7 +12,5 @@
 <p>L'IA : <%= request.getAttribute("aISelection") %> </p>
 <p><%= request.getAttribute("result") %></p>
 
-<p><%= request.getAttribute("person") %></p>
-
 </body>
 </html>

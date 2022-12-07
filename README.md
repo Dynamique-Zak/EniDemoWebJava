@@ -8,7 +8,9 @@
 
 ```java
 class Person{
-    
+    private void myFunction() {
+        
+    }
 }
 ```
 

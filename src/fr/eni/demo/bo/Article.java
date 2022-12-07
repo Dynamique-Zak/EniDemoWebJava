@@ -1,4 +1,4 @@
-package fr.eni.demo.servet;
+package fr.eni.demo.bo;
 
 public class Article {
 

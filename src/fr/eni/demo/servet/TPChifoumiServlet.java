@@ -11,14 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.demo.bo.Person;
+
 /**
  * Servlet implementation class TPChifoumi
  */
 @WebServlet("/chifumi")
-public class TPChifoumi extends HttpServlet {
+public class TPChifoumiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private HashMap<String, String> dicto = new HashMap<String, String> () 
+	private HashMap<String, String> dico = new HashMap<String, String> () 
 	{
 		{
 			put("chi", "fu");
@@ -30,7 +32,7 @@ public class TPChifoumi extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TPChifoumi() {
+    public TPChifoumiServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -87,14 +89,17 @@ public class TPChifoumi extends HttpServlet {
 		// - si c'est chi la clé alors ca retourne fu
 		// - si l'ia à mis fu
 		// Si l'ia à gagné
-		// Version ternaire
+		
+		// 1 :: Version ternaire
 		/*
 		String result = dicto.get(selection).equals(aISelection) ? "L'ia à gagné" : (selection.equals(aISelection)) ? "Match nul" : "Le joueur à gagné";
 		System.out.println(result);
 		*/
 		String result;
 		
-		if (dicto.get(selection).equals(aISelection)) {
+		// 2 :: Version découpée
+		// je récupère le point faible de ma selection et je compare avec la selection de l'IA
+		if (dico.get(selection).equals(aISelection)) {
 			result = "L'ia à gagné";
 		}
 		else {
@@ -111,9 +116,6 @@ public class TPChifoumi extends HttpServlet {
 		request.setAttribute("aISelection", aISelection);
 		request.setAttribute("result", result);
 		
-		// Example objet complet
-		Person person = new Person("Isaac");
-		request.setAttribute("person", person);
 		
 		// Afficher page HTML
 		RequestDispatcher rd = request.getRequestDispatcher("tp3/result.jsp");

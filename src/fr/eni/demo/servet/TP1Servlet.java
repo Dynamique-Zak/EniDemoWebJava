@@ -34,7 +34,7 @@ public class TP1Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// Afficher page HTML (formulaire)
-		RequestDispatcher rd = request.getRequestDispatcher("tp1.html");
+		RequestDispatcher rd = request.getRequestDispatcher("tp1/tp1.html");
 		rd.forward(request, response);
 	}
 
@@ -62,13 +62,13 @@ public class TP1Servlet extends HttpServlet {
 			this.randomNumber = -1;
 			
 			// Afficher page HTML (formulaire)
-			RequestDispatcher rd = request.getRequestDispatcher("success.html");
+			RequestDispatcher rd = request.getRequestDispatcher("tp1/success.html");
 			rd.forward(request, response);
 		}
 		else {
 			// pas ok
 			// Afficher page HTML (formulaire)
-			RequestDispatcher rd = request.getRequestDispatcher("error.html");
+			RequestDispatcher rd = request.getRequestDispatcher("tp1/error.html");
 			rd.forward(request, response);
 		}
 	}

@@ -20,6 +20,9 @@
 <form action="/EniDemo/ExampleButtonValue" method="post"><input type="hidden" name="selection" value="mi"/><input type="submit" value="Ciseaux"/></form>
 
 
+<p><%= request.getAttribute("person") %></p>
+
+
 <body>
 
 </body>
