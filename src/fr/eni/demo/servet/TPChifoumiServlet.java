@@ -47,7 +47,7 @@ public class TPChifoumiServlet extends HttpServlet {
 		
 		Object[] objects = new Object[2];
 		
-		objects[0] = new Person("Isaac");
+		objects[0] = new Person("Isaac", "Biere");
 		objects[1] = "Arnaud";
 
 		for (int i = 0; i < objects.length; i++) {

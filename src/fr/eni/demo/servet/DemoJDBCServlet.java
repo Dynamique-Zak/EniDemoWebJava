@@ -2,7 +2,6 @@ package fr.eni.demo.servet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,18 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.demo.bo.Person;
+import fr.eni.demo.dal.DAOArticle;
+import fr.eni.demo.dal.DAOFactory;
+import fr.eni.demo.dal.DAOPerson;
 
 /**
- * Servlet implementation class ExampleButtonValue
+ * Servlet implementation class DemoJDBCServlet
  */
-@WebServlet("/ExampleButtonValue")
-public class ExampleButtonValueServlet extends HttpServlet {
+@WebServlet("/DemoJDBCServlet")
+public class DemoJDBCServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ExampleButtonValueServlet() {
+    public DemoJDBCServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +33,17 @@ public class ExampleButtonValueServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Example objet complet
-		Person person = new Person("Isaac", "Chocolatine");
-		request.setAttribute("person", person);
+		// Recupere DAO Personne (par sa classe)
+		DAOPerson daoPerson = DAOFactory.getDAOByClass(DAOPerson.class);
+
+		// Recupere DAO Article (par sa classe)
+		DAOArticle daoArticle = DAOFactory.getDAOByClass(DAOArticle.class);
 		
-		// Afficher page HTML
-		RequestDispatcher rd = request.getRequestDispatcher("example-button.jsp");
-		rd.forward(request, response);
+		Person person = daoPerson.selectById(1);
+		
+		System.out.println(person);
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -45,9 +51,7 @@ public class ExampleButtonValueServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String selection = request.getParameter("selection");
-		
-		response.getWriter().append(String.format("Vous avez selectionné %s", selection));
+		doGet(request, response);
 	}
 
 }
