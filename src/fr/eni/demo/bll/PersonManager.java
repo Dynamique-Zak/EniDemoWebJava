@@ -5,7 +5,6 @@ import fr.eni.demo.dal.DAOFactory;
 import fr.eni.demo.dal.DAOPerson;
 
 public class PersonManager extends ManagerBase {
-
 	
 	public EniDemoResponse addPerson(Person person) {
 		// Par defaut OK
@@ -13,6 +12,10 @@ public class PersonManager extends ManagerBase {
 		
 		// j'appel La DAO pour mettre en base
 		DAOFactory.getDAOByClass(DAOPerson.class).insert(person);
+		
+		DAOPerson daoPerson	= DAOFactory.getDAOByClass(DAOPerson.class);
+		
+		daoPerson.insert(person);
 		
 		// Erreur
 		response.responseCode = 744;

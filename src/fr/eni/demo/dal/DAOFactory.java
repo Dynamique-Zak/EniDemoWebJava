@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DAOFactory {
-
-	// private static DAOPerson daoPerson;
-	private static List<DAOBase> DAOInstances = new ArrayList<DAOBase>();
 	
 	/*
 	public static DAOPerson getDAOPerson() {
@@ -19,6 +16,15 @@ public class DAOFactory {
 	}
 	*/
 	
+	// private static DAOPerson daoPerson;
+	private static List<DAOBase> DAOInstances = new ArrayList<DAOBase>();
+
+	
+	/**
+	 * Essaye de recuperer une DAO dans la liste
+	 * @param type
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends DAOBase> T getDAOInList(Class<T> type) {
 		for (DAOBase daoBase : DAOInstances) {
