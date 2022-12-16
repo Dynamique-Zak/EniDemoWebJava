@@ -1,18 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-Ma page JSP home
+<!-- Import -->
+<fmt:setLocale value="en" />
+<fmt:setBundle basename="fr.eni.demo.i18n.messages" />
+ 
+<jsp:useBean
+	id="horloge" 
+	scope="request"
+	class="fr.eni.demo.bo.Horloge" 
+	>
+</jsp:useBean>
 
+<jsp:include page="/views/template/page-begin.jsp"></jsp:include>
 
-<p><%= (String) request.getAttribute("firstname") %></p>
+<h1 class="uk-heading-small">Accueil</h1>
 
+<p>${ horloge.getHour() }</p>
+  
+<!-- Example traduire message -->
+<fmt:message key="welcome" />
 
-</body>
-</html>
+<p>
+<fmt:message key="welcome.user">
+	<fmt:param value="Cintia"></fmt:param>
+</fmt:message>
+</p>
+     
+<jsp:include page="/views/template/page-end.jsp"></jsp:include>
